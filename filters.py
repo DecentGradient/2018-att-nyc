@@ -1,47 +1,57 @@
-
 from PIL import Image
+# Rename this file to be "filters.py"
+# Add commands to import modules here.
 
+# Define your load_img() function here.
+#       Parameters: The name of the file to be opened (string)
+#       Returns: The image object with the opened file.
 def load_img(filename):
-    imgObject = Image.open(filename)
-    return imgObject
+    imgname = Image.open(filename)
+    return imgname
 
-def show_img(imgObject):
-    imgObject.show()
 
-def save_img(imgObject, filename):
-    imgObject.save(filename)
+# Define your show_img() function here.
+#       Parameters: The image object to display.
+#       Returns: nothing.
 
-def bluescale(imgObject):
-    data = imgObject.getdata()
+def show_img(imgname):
+    imgname.show()
 
-    sarah_img = []
+def obamicon(img):
+    data = img.getdata()
 
-    black = (0, 0, 0)
-    darkblue = (0, 38, 51)
-    blue = (0, 115, 153)
-    lightblue = (0, 191, 255)
-    slightblue = (102, 217, 255)
-    slightishblue = (203, 242, 255)
-    whiteblue = (204, 242, 255)
-    white = (255, 255, 255)
+    obamifield_img = []
+
+    yellow = (0, 0, 0)
+    green = (244, 250, 98)
+    lightBlue = (0, 0, 0)
+    white = (300, 227, 66)
 
     for pixel in data:
         intensity = pixel[0] + pixel[1] + pixel[2]
-        if intensity >= 0 and intensity < 182:
-            sarah_img.append(black)
-        elif intensity >= 182 and intensity < 276:
-            sarah_img.append(darkblue)
-        elif intensity >= 276 and intensity < 364:
-            sarah_img.append(blue)
-        elif intensity >= 364 and intensity < 489:
-            sarah_img.append(lightblue)
-        elif intensity >= 489 and intensity < 574:
-            sarah_img.append(slightishblue)
-        elif intensity >= 574 and intensity < 663:
-            sarah_img.append(whiteblue)
+        if intensity < 90:
+            obamifield_img.append(yellow)
+        elif 90 < intensity and intensity < 364:
+            obamifield_img.append(green)
+        elif 275 <= intensity and intensity < 489:
+            obamifield_img.append(lightBlue)
         else:
-            sarah_img.append(white)
+            obamifield_img.append(white)
 
-    newImg = Image.new("RGB", imgObject.size)
-    newImg.putdata(sarah_img)
+    newImg = Image.new("RGB", img.size)
+    newImg.putdata(obamifield_img)
     return newImg
+
+# Define your save_img() function here.
+#       Parameters: The image object to save, the name to save the file as (string)
+#       Returns: nothing.
+#def save_img(imgname, filename):
+    imgname.save(filename)
+
+#def image.getdata
+
+
+# Define your obamicon() function here.
+#       Parameters: The image object to apply the filter to.
+#       Returns: A New Image object with the filter applied.
+#def obamicon():
